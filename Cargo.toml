@@ -1,0 +1,17 @@
+[package]
+name = "mouse_mover"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+[target.x86_64-apple-darwin]
+linker = "/usr/local/osxcross/target/bin/x86_64-apple-darwin22.4-clang" # Explicitly set osxcross clang
+
+[target.'cfg(target_os = "macos")']
+rustflags = [
+    "-framework", "CoreGraphics",
+    "-F", "/usr/local/osxcross/target/SDK/MacOSX13.3.sdk/System/Library/Frameworks"
+]
